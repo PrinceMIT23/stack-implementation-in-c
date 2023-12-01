@@ -1,0 +1,72 @@
+#include <stdio.h> 
+int MAXSIZE = 8;
+int stack[8];
+int top = -1;
+
+int isempty(){
+    if(top == -1)
+    return 1;
+    else
+    return 0;
+}
+
+int isfull(){
+    if(top == MAXSIZE)
+    return 1;
+else
+return 0;
+}
+
+int peek(){
+    return stack[top];
+}
+
+int pop(){
+    int data;
+    if(!isempty()){
+        data = stack[top];
+        top = top - 1;
+        return data;
+    } else{
+        printf("could not retrieve data, stack is empty.\n");
+    }
+    return 0;
+}
+
+int push(int data){
+    if(!isfull()){
+        top = top + 1;
+        stack[top] = data;
+    } else{
+        printf("could not inset data,stack is full.\n");
+    }
+    return 0;
+}
+
+
+int main(){
+    push(44);
+    push(76);
+    push(56);
+    push(45);
+    push(10);
+    push(78);
+    push(67);
+    push(84);
+    push(45);
+    pop(45);
+    pop(84);
+    push(3);
+    printf("Element at top of the stack: %d\n" ,peek());
+    printf("Elements: \n");
+
+
+    while(!isempty()){
+        int data = pop();
+        printf("%d\n",data);
+    }
+    printf("stack full: %s\n", isfull()?"true":"false");
+    printf("stack empty: %s\n", isempty()?"true":"false");
+    return 0;
+
+}
